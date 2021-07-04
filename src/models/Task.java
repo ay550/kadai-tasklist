@@ -8,9 +8,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+
+//一覧表示するデータを取得するためのJPQLを追記
+//@NamedQueries アノテーションと @NamedQuery アノテーションを利用
+
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllTasks",
+        query = "SELECT m FROM Task AS m ORDER BY m.id DESC"
+    )       //SELECT m は SELECT * と同じ意味
+})
+
 @Table(name = "tasks")
 public class Task {
 
